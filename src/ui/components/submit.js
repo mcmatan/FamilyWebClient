@@ -22,7 +22,7 @@ function submit(values) {
     //     //     throw new SubmissionError({ username: 'User does not exist', _error: 'Login failed!' })
     //     // } else if (values.password !== 'redux-form') {
     //     //     throw new SubmissionError({ password: 'Wrong password', _error: 'Login failed!' })
-    //     // } else {
+    //     // } elsespo
     //     //     window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
     //     // }
     // });
@@ -30,7 +30,8 @@ function submit(values) {
     firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
         window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
     }).catch(function(error) {
-        window.alert(`Error!`)
+        throw new SubmissionError({ password: 'Wrong password', _error: 'Login failed!' });
+        //window.alert(`Error!`)
     });
 
     // return sleep(1000) // simulate server latency
