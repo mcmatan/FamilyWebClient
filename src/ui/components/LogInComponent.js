@@ -29,6 +29,6 @@ const LogInComponent = (props) => {
 }
 
 export default reduxForm({
-    form: 'login'  // a unique identifier for this form
+    form: 'login'
 })(LogInComponent)
 
