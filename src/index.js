@@ -1,11 +1,11 @@
 import React from "react";
 import {render} from "react-dom";
-import App from "./components/App";
+import App from "./ui/components/App";
 import {Provider} from "react-redux";
 import "./index.css";
 import {createStore, combineReducers} from "redux";
 import {reducer as formReducer} from "redux-form";
-import LogInReducer from "./reducers/LogInReducer"
+import LogInReducer from "./core/reducers/LogInReducer"
 
 
 const reducers = {

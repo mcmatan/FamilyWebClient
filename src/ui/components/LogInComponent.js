@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import CardComponent from "../../views/Card";
+import CardComponent from "../views/Card";
 import { Field, reduxForm } from 'redux-form';
 
 class LogInComponent extends Component {
