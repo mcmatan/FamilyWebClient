@@ -4,14 +4,14 @@ import {Provider} from "react-redux";
 import "./index.css";
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import {reducer as formReducer} from "redux-form";
-import LogInReducer from "./core/reducers/AuthReducer";
+import AuthReducer from "./core/reducers/AuthReducer";
 import routes from './core/routes'
 import { Router, browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 
 
 const reducers = {
-    logInReducer: LogInReducer,
+    authReducer: AuthReducer,
     form: formReducer
 };
 const reducer = combineReducers(reducers);

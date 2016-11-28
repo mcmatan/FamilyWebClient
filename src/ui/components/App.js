@@ -1,33 +1,17 @@
 import React, {Component} from "react";
 import "../../App.css";
-import auth from "../../core/auth/Auth";
 import {Link} from "react-router";
+import {connect} from "react-redux";
 
 
-const App = React.createClass({
-    getInitialState() {
-        return {
-            loggedIn: auth.loggedIn()
-        }
-    },
-
-    updateAuth(loggedIn) {
-        this.setState({
-            loggedIn
-        })
-    },
-
-    componentWillMount() {
-        auth.onChange = this.updateAuth;
-        auth.login();
-    },
+class App extends Component {
 
     render() {
         return (
             <div>
                 <ul>
                     <li>
-                        {this.state.loggedIn ? (
+                        {this.props.loggedIn ? (
                             <Link to="/logout">Log out</Link>
                         ) : (
                             <Link to="/login">Sign in</Link>
@@ -36,10 +20,16 @@ const App = React.createClass({
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
                 </ul>
-                {this.props.children || <p>You are {!this.state.loggedIn && 'not'} logged in.</p>}
+                {this.props.children || <p>You are {!this.props.loggedIn && 'not'} logged in.</p>}
             </div>
         )
     }
-});
+}
+;
 
-export default App;
+function mapStateToProps(state) {
+    return {loggedIn: state.authReducer.isLoggedIn};
+}
+
+export default connect(mapStateToProps)(App)
+
