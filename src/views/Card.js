@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 
-class CardComponent extends Component {
+class Card extends Component {
 
     render() {
         return (
-            <div>
+            <div className="CardComponent">
                 {this.props.children}
             </div>
         );
     }
+
+
 }
 
-export default CardComponent;
+export default Card;

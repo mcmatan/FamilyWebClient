@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-eslint": "^7.1.1",
+    "css-loader": "^0.26.0",
     "eslint": "^3.11.0",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-react": "^6.7.1",
@@ -14,7 +15,11 @@
     "eslint-plugin-react": "^6.7.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-tabs": "^0.8.2"
+    "react-redux": "^4.4.6",
+    "react-tabs": "^0.8.2",
+    "redux": "^3.6.0",
+    "redux-form": "^6.2.0",
+    "style-loader": "^0.13.1"
   },
   "scripts": {
     "start": "react-scripts start",
