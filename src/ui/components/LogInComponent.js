@@ -1,36 +1,33 @@
-import React, {Component} from "react";
-import CardComponent from "../views/Card";
-import {Field, reduxForm} from "redux-form";
+import React from 'react'
+import { Field, reduxForm } from 'redux-form'
+import submit from './submit'
 
-class LogInComponent extends Component {
+const renderField = ({ input, label, type, meta: { touched, error } }) => (
+    <div>
+        <label>{label}</label>
+        <div>
+            <input {...input} placeholder={label} type={type}/>
+            {touched && error && <span>{error}</span>}
+        </div>
+    </div>
+)
 
-    handleSubmit = (values) => {
-        console.log(values);
-    };
-
-    render() {
-        return (
+const LogInComponent = (props) => {
+    const { error, handleSubmit, pristine, reset, submitting } = props
+    return (
+        <form onSubmit={handleSubmit(submit)}>
+            <Field name="username" type="text" component={renderField} label="Username"/>
+            <Field name="password" type="password" component={renderField} label="Password"/>
+            {error && <strong>{error}</strong>}
             <div>
-                <CardComponent>
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="firstName">First Name</label>
-                            <Field name="firstName" component="input" type="text"/>
-                        </div>
-                        <div>
-                            <label htmlFor="lastName">Last Name</label>
-                            <Field name="lastName" component="input" type="text"/>
-                        </div>
-                        <button type="Log in">Submit</button>
-                    </form>
-                </CardComponent>
+                <button type="submit" disabled={submitting}>Log In</button>
+                <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
             </div>
-        )
-    }
+        </form>
+    )
 }
 
-LogInComponent = reduxForm({
-    form: 'login'
-})(LogInComponent);
+export default reduxForm({
+    form: 'login'  // a unique identifier for this form
+})(LogInComponent)
 
-export default LogInComponent;
