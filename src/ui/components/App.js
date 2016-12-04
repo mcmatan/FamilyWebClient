@@ -2,9 +2,17 @@ import React, {Component} from "react";
 import "../../App.css";
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import { browserHistory } from 'react-router'
 
 
 class App extends Component {
+
+    componentWillMount() {
+        if (this.props.loggedIn == false) {
+            const path = `/login`;
+            browserHistory.push(path)
+        }
+    }
 
     render() {
         return (

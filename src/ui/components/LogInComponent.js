@@ -1,8 +1,11 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { login } from '../../core/actions/AuthActions'
+import React, {Component} from "react";
+import {Field, reduxForm} from "redux-form";
+import {login} from "../../core/actions/AuthActions";
+import {connect} from "react-redux";
+import {bindActionCreators} from 'redux';
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
+
+const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div>
         <label>{label}</label>
         <div>
@@ -12,23 +15,40 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
     </div>
 )
 
-const LogInComponent = (props) => {
-    const { dispatch } = props;
-    const { error, handleSubmit, pristine, reset, submitting } = props;
-    return (
-        <form onSubmit={handleSubmit( (values) => dispatch(login(values)))}>
-            <Field name="username" type="text" component={renderField} label="Username"/>
-            <Field name="password" type="password" component={renderField} label="Password"/>
-            {error && <strong>{error}</strong>}
-            <div>
-                <button type="submit" disabled={submitting}>Log In</button>
-                <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-            </div>
-        </form>
-    )
+class LogInComponent extends Component {
+
+    render() {
+        const {dispatch} = this.props;
+        const {loginError, handleSubmit, pristine, reset, submitting} = this.props;
+
+        return (
+            <form onSubmit={handleSubmit((values) => dispatch(login(values))) }>
+                <Field name="username" type="text" component={renderField} label="Username" />
+                <Field name="password" type="password" component={renderField} label="Password" />
+                {loginError && <strong>{loginError}</strong>}
+                <div>
+                    <button type="submit" disabled={submitting}>Log In</button>
+                    <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+                </div>
+            </form>
+        )
+    }
 }
 
-export default reduxForm({
+LogInComponent = reduxForm({
     form: 'login'
-})(LogInComponent)
+})(LogInComponent);
+
+
+function mapStateToProps(state) {
+    return {loginError: state.authReducer.loginError}
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({}, dispatch);
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogInComponent)
+
 
