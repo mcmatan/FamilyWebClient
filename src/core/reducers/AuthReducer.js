@@ -1,4 +1,4 @@
-import { SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT } from '../actions/ActionTypes';
+import { SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT, LOGOUT} from '../actions/ActionTypes';
 
 const AuthReducer = (state = [], action) => {
     switch (action.type) {
@@ -15,6 +15,10 @@ const AuthReducer = (state = [], action) => {
         case SIGN_IN_SUBMIT:
             return Object.assign({}, state, {
                 loginError: ""
+            });
+        case LOGOUT:
+            return Object.assign({}, state, {
+                isLoggedIn: false
             });
         default:
             return state

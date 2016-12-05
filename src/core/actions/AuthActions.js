@@ -1,18 +1,32 @@
 import {firebaseAuth} from "../../core/firebase";
-import {SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT} from "./ActionTypes";
-import { browserHistory } from 'react-router'
+import {SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT,LOGOUT} from "./ActionTypes";
+import { browserHistory } from 'react-router';
 
+
+// export function login(values) {
+//     const email = values.username;
+//     const password = values.password;
+//     return dispatch => {
+//         dispatch(signInSuccess(null));
+//         firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
+//             dispatch(signInSuccess(user));
+//         }).catch(function(error) {
+//             dispatch(signInError(error));
+//         });
+//     };
+// }
 
 export function login(values) {
     const email = values.username;
     const password = values.password;
     return dispatch => {
         dispatch(loginSubmit());
-        firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
-            dispatch(signInSuccess(user));
-        }).catch(function(error) {
-            dispatch(signInError(error));
-        });
+        dispatch(signInSuccess(null));
+        // firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
+        //     dispatch(signInSuccess(user));
+        // }).catch(function(error) {
+        //     dispatch(signInError(error));
+        // });
     };
 }
 
@@ -29,9 +43,17 @@ export function signInError(error) {
     };
 }
 
+export function logout() {
+    const path = '/';
+    browserHistory.push(path);
+    return {
+        type: LOGOUT
+    };
+}
+
 export function signInSuccess(user) {
     const path = '/dashboard';
-    browserHistory.push(path)
+    browserHistory.push(path);
 
     return {
         type: SIGN_IN_SUCCESS,

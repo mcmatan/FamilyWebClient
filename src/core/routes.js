@@ -11,6 +11,6 @@ export default (
     <Route path="/" component={App}>
         <IndexRoute component={Welcome} />
         <Route path="login" component={LoginComponent}/>
-        <Route path="dashboard" component={Dashboard} onEnter={}/>
+        <Route path="dashboard" component={Dashboard} />
     </Route>
 );

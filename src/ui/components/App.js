@@ -1,8 +1,14 @@
 import React, {Component} from "react";
 import "../../App.css";
-import {Link} from "react-router";
+import {browserHistory} from "react-router";
 import {connect} from "react-redux";
-import { browserHistory } from 'react-router'
+import getMuiTheme from "material-ui/styles/getMuiTheme";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import injectTapEventPlugin from "react-tap-event-plugin";
+import NavigationBar from '../views/NavigationBar';
+import {logout} from "../../core/actions/AuthActions";
+injectTapEventPlugin();
+
 
 
 class App extends Component {
@@ -14,22 +20,35 @@ class App extends Component {
         }
     }
 
+    handleLoginPress = () => {
+        const path = '/login';
+        browserHistory.push(path);
+    };
+
+    handleLogoutPress = () => {
+        this.props.dispatch(logout());
+        // const path = '/';
+        // browserHistory.push(path);
+    };
+
+    handleTitleTouch = () => {
+        const path = '/dashboard';
+        browserHistory.push(path);
+    };
+
+
     render() {
         return (
-            <div>
-                <ul>
-                    <li>
-                        {this.props.loggedIn ? (
-                            <Link to="/logout">Log out</Link>
-                        ) : (
-                            <Link to="/login">Sign in</Link>
-                        )}
-                    </li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/dashboard">Dashboard</Link> (authenticated)</li>
-                </ul>
-                {this.props.children || <p>You are {!this.props.loggedIn && 'not'} logged in.</p>}
-            </div>
+            <MuiThemeProvider muiTheme={getMuiTheme()}>
+                <div>
+                    {this.props.loggedIn ? (
+                        <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Logout" onClick={this.handleLogoutPress} />
+                    ) : (
+                    <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Login" onClick={this.handleLoginPress}/>
+                    )}
+                    {this.props.children || <p>You are {!this.props.loggedIn && 'not'} logged in.</p>}
+                </div>
+            </MuiThemeProvider>
         )
     }
 }
