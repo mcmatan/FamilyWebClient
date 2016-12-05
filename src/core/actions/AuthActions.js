@@ -21,7 +21,12 @@ export function login(values) {
     const password = values.password;
     return dispatch => {
         dispatch(loginSubmit());
-        dispatch(signInSuccess(null));
+        if (email === "matan@memoria-tech.com" && password === "7437711") {
+            dispatch(signInSuccess(null));
+        } else {
+            dispatch(signInError({message: "Some error"}));
+        }
+
         // firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
         //     dispatch(signInSuccess(user));
         // }).catch(function(error) {

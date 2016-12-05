@@ -5,6 +5,11 @@ import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 
 
+import {
+    TextField
+} from 'redux-form-material-ui'
+
+
 const renderField = ({input, label, type, meta: {touched, error}}) => (
     <div>
         <label>{label}</label>
@@ -13,6 +18,14 @@ const renderField = ({input, label, type, meta: {touched, error}}) => (
             {touched && error && <span>{error}</span>}
         </div>
     </div>
+);
+
+const renderTextField = props => (
+    <TextField hintText={props.label}
+               floatingLabelText={props.label}
+               errorText={props.touched && props.error}
+               {...props}
+    />
 )
 
 class LogInComponent extends Component {
@@ -23,8 +36,8 @@ class LogInComponent extends Component {
 
         return (
             <form onSubmit={handleSubmit((values) => dispatch(login(values))) }>
-                <Field name="username" type="text" component={renderField} label="Username" />
-                <Field name="password" type="password" component={renderField} label="Password" />
+                <Field name="username" component={TextField} hintText="User name"/>
+                <Field name="password" component={TextField} hintText="Password"/>
                 {loginError && <strong>{loginError}</strong>}
                 <div>
                     <button type="submit" disabled={submitting}>Log In</button>
