@@ -1,37 +1,30 @@
 import {firebaseAuth} from "../../core/firebase";
-import {SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT,LOGOUT} from "./ActionTypes";
-import { browserHistory } from 'react-router';
+import {SIGN_IN_ERROR, SIGN_IN_SUCCESS, SIGN_IN_SUBMIT, LOGOUT} from "./ActionTypes";
+import {browserHistory} from 'react-router';
 
-
-// export function login(values) {
-//     const email = values.username;
-//     const password = values.password;
-//     return dispatch => {
-//         dispatch(signInSuccess(null));
-//         firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
-//             dispatch(signInSuccess(user));
-//         }).catch(function(error) {
-//             dispatch(signInError(error));
-//         });
-//     };
-// }
 
 export function login(values) {
     const email = values.username;
     const password = values.password;
     return dispatch => {
         dispatch(loginSubmit());
-        if (email === "matan@memoria-tech.com" && password === "7437711") {
-            dispatch(signInSuccess(null));
-        } else {
-            dispatch(signInError({message: "Some error"}));
-        }
+        firebaseAuth.signInWithEmailAndPassword(email, password).then(function (user) {
+            dispatch(signInSuccess(user));
+        }).catch(function (error) {
+            dispatch(signInError(error));
+        });
+    };
+}
 
-        // firebaseAuth.signInWithEmailAndPassword(email, password).then(function(user) {
-        //     dispatch(signInSuccess(user));
-        // }).catch(function(error) {
-        //     dispatch(signInError(error));
-        // });
+export function startAuthListener() {
+    return dispatch => {
+        firebaseAuth.onAuthStateChanged(function (user) {
+            if (user) {
+                dispatch(signInSuccess(user))
+            } else {
+                dispatch(signInError({message: ""}))
+            }
+        })
     };
 }
 
@@ -49,10 +42,16 @@ export function signInError(error) {
 }
 
 export function logout() {
-    const path = '/';
-    browserHistory.push(path);
-    return {
-        type: LOGOUT
+    return dispatch => {
+        firebaseAuth.signOut().then(function () {
+            const path = '/';
+            browserHistory.push(path);
+            dispatch({
+                type: LOGOUT
+            });
+        }, function (error) {
+            console.log(`Error on logout = ${error}`);
+        });
     };
 }
 
@@ -65,3 +64,6 @@ export function signInSuccess(user) {
         payload: user
     };
 }
+
+
+

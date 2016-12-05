@@ -7,6 +7,18 @@ import Welcome from '../ui/components/Welcome';
 
 
 
+function MatchWhenAuthed ({component: Component, authed, ...rest}) {
+    return (
+        <Match
+            {...rest}
+            render={(props) => authed === true
+                ? <Component {...props} />
+                : <Redirect to={{pathname: '/login', state: {from: props.location}}} />}
+        />
+    )
+}
+
+
 export default (
     <Route path="/" component={App}>
         <IndexRoute component={Welcome} />
