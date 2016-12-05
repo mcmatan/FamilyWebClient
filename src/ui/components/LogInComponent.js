@@ -3,6 +3,7 @@ import {Field, reduxForm} from "redux-form";
 import {login} from "../../core/actions/AuthActions";
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
+import RaisedButton from 'material-ui/RaisedButton';
 
 
 import {
@@ -20,17 +21,14 @@ const renderField = ({input, label, type, meta: {touched, error}}) => (
     </div>
 );
 
-const renderTextField = props => (
-    <TextField hintText={props.label}
-               floatingLabelText={props.label}
-               errorText={props.touched && props.error}
-               {...props}
-    />
-)
-
 class LogInComponent extends Component {
 
     render() {
+
+        const style = {
+            margin: 12,
+        };
+
         const {dispatch} = this.props;
         const {loginError, handleSubmit, pristine, reset, submitting} = this.props;
 
@@ -40,8 +38,7 @@ class LogInComponent extends Component {
                 <Field name="password" component={TextField} hintText="Password"/>
                 {loginError && <strong>{loginError}</strong>}
                 <div>
-                    <button type="submit" disabled={submitting}>Log In</button>
-                    <button type="button" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+                    <RaisedButton label="Login" style={style} type="Submit" />
                 </div>
             </form>
         )
