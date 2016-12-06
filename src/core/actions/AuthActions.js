@@ -16,25 +16,18 @@ export function signInError(error) {
     };
 }
 
-export function logout() {
-    return dispatch => {
-        // firebaseAuth.signOut().then(function () {
-        //     const path = '/';
-        //     browserHistory.push(path);
-        //     dispatch({
-        //         type: LOGOUT
-        //     });
-        // }, function (error) {
-        //     console.log(`Error on logout = ${error}`);
-        // });
-    };
-}
 
 export function signInSuccess(user) {
     return {
         type: SIGN_IN_SUCCESS,
         payload: user
     };
+}
+
+export function logout() {
+    return {
+        type: LOGOUT
+    }
 }
 
 export function signInSuccessAndRoute(user) {

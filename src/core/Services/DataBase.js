@@ -2,22 +2,20 @@ import {firebaseApp} from '../firebase/firebase';
 const firebaseDb = firebaseApp.database();
 
 class DataBase {
-    user = null;
     ref = {};
 
-    getCurrentUser() {
-        return this.user
+    isLoggedIn() {
+        return localStorage.loggedIn
     }
 
     setUserLoggedIn(user) {
-        debugger;
-        this.ref = firebaseDb.ref(user.id);
-        firebaseDb.ref(user.id).child("isLoggedIn").set(true);
+        localStorage.loggedIn = true;
+        this.ref = firebaseDb.ref(user.uid);
+        firebaseDb.ref("users/" + user.uid).child("isLoggedIn").set(true);
     }
 
     setUserLoggedOut() {
-        debugger;
-        const userId = this.ref.key;
+        localStorage.loggedIn = false;
     }
 }
 

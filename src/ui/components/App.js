@@ -5,17 +5,15 @@ import {connect} from "react-redux";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
-import NavigationBar from '../views/NavigationBar';
-import {logout} from "../../core/actions/AuthActions";
+import NavigationBar from "../views/NavigationBar";
 import {authServiceShared} from "../../core/Services/AuthService";
 injectTapEventPlugin();
-
 
 
 class App extends Component {
 
     componentWillMount() {
-        authServiceShared.startAuthListener();
+        this.props.dispatch(authServiceShared.startAuthListener());
     }
 
     handleLoginPress = () => {
@@ -24,7 +22,7 @@ class App extends Component {
     };
 
     handleLogoutPress = () => {
-        this.props.dispatch(logout());
+        this.props.dispatch(authServiceShared.logout());
     };
 
     handleTitleTouch = () => {
@@ -38,9 +36,10 @@ class App extends Component {
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div>
                     {this.props.loggedIn ? (
-                        <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Logout" onClick={this.handleLogoutPress} />
+                        <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Logout"
+                                       onClick={this.handleLogoutPress}/>
                     ) : (
-                    <NavigationBar onTitleTouchTap={this.handleTitleTouch} onClick={this.handleLoginPress} />
+                        <NavigationBar onTitleTouchTap={this.handleTitleTouch} onClick={this.handleLoginPress}/>
                     )}
                     {this.props.children || <p>You are {!this.props.loggedIn && 'not'} logged in.</p>}
                 </div>

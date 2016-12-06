@@ -10,8 +10,7 @@ import {authServiceShared} from "./Services/AuthService";
 
 const confirmAuth = (nextState, replace) => {
 
-    const user = authServiceShared.getCurrentUser();
-    if (!user) {
+    if (!authServiceShared.isLoggedIn()) {
         replace({ pathname: '/', state: { nextPathname: nextState.location.pathname } });
     }
 };
