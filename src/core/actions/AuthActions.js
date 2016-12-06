@@ -35,6 +35,8 @@ export function loginSubmit() {
 }
 
 export function signInError(error) {
+    const path = '/login';
+    browserHistory.push(path);
     return {
         type: SIGN_IN_ERROR,
         payload: error.message

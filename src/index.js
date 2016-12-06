@@ -8,7 +8,7 @@ import AuthReducer from "./core/reducers/AuthReducer";
 import routes from './core/routes'
 import { Router, browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
-
+import Favicon from 'react-favicon';
 
 const reducers = {
     authReducer: AuthReducer,
@@ -23,7 +23,9 @@ const store = createStore(
 
 render(
     <Provider store={store}>
+        <div>
         <Router history={browserHistory} routes={routes} />
+        </div>
     </Provider>,
     document.getElementById('root')
 );

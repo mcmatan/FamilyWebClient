@@ -24,8 +24,6 @@ class App extends Component {
 
     handleLogoutPress = () => {
         this.props.dispatch(logout());
-        // const path = '/';
-        // browserHistory.push(path);
     };
 
     handleTitleTouch = () => {
@@ -41,7 +39,7 @@ class App extends Component {
                     {this.props.loggedIn ? (
                         <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Logout" onClick={this.handleLogoutPress} />
                     ) : (
-                    <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Login" onClick={this.handleLoginPress}/>
+                    <NavigationBar onTitleTouchTap={this.handleTitleTouch} onClick={this.handleLoginPress}/>
                     )}
                     {this.props.children || <p>You are {!this.props.loggedIn && 'not'} logged in.</p>}
                 </div>
