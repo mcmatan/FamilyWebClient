@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-class Welcome extends Component {
+class AddTask extends Component {
     render() {
         return (
-            <div></div>
+            <div>Add task</div>
         )
     }
 }
 
-export default Welcome;
+export default AddTask;

@@ -19,12 +19,12 @@ class LogInComponent extends Component {
         };
 
         const {dispatch} = this.props;
-        const {loginError, handleSubmit, pristine, reset, submitting} = this.props;
+        const {loginError, handleSubmit} = this.props;
 
         return (
             <form onSubmit={handleSubmit((values) => dispatch(login(values))) }>
-                <Field name="username" component={TextField} hintText="User name"/>
-                <Field name="password" component={TextField} hintText="Password"/>
+                <Field name="username" component={TextField} hintText="User name" floatingLabelText="User name" />
+                <Field name="password" component={TextField} hintText="Password" floatingLabelText="Password" type="password" />
                 {loginError && <strong>{loginError}</strong>}
                 <div>
                     <RaisedButton label="Login" style={style} type="Submit" />

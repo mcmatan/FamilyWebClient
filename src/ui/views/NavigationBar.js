@@ -15,7 +15,7 @@ class NavigationBar extends Component {
                 showMenuIconButton={false}
                 title={<span style={styles.title}>Memoria</span>}
                 onTitleTouchTap={this.props.onTitleTouchTap}
-                iconElementRight={<FlatButton label={this.props.iconElementRight} onClick={this.props.onClick}/>}
+                iconElementRight={ ( this.props.iconElementRight && (<FlatButton label={this.props.iconElementRight} onClick={this.props.onClick}/>)) }
             />
         )
     }
