@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import FloatingButton from '../views/FloatingButton'
 import BottomTabBar from './BottomTabBar'
+import {browserHistory} from "react-router";
 
 class Dashboard extends Component {
+
+    onFloatingButtonClick = () => {
+        browserHistory.push('addTask');
+    };
+
     render() {
         return (
         <div>
             <div>Dashboard!</div>
-            <FloatingButton />
+            <FloatingButton onClick={this.onFloatingButtonClick} />
             <BottomTabBar />
         </div>
 

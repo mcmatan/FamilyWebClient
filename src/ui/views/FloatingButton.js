@@ -9,10 +9,11 @@ const style = {
 
 
 class FloatingButton extends Component {
+
     render() {
         return (
             <div>
-                <FloatingActionButton style={style}>
+                <FloatingActionButton style={style} onClick={this.props.onClick}>
                     <ContentAdd />
                 </FloatingActionButton>
             </div>
