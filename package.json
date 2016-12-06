@@ -11,8 +11,10 @@
     "react-scripts": "0.7.0"
   },
   "dependencies": {
+    "antd": "^2.5.1",
     "firebase": "^3.6.1",
     "material-ui": "^0.16.4",
+    "rc-time-picker": "^2.2.1",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-favicon": "0.0.5",

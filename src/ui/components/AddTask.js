@@ -1,24 +1,7 @@
-// import React, {Component} from 'react';
-
-//
-// class AddTask extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <div style={{width: 300}}>
-//                     <DayPicker />
-//                 </div>
-//                 <div style={{width: 300}} >
-//                     <TimePicker />
-//                 </div>
-//             </div>
-//         )
-//     }
-// }
-// export default AddTask;
 
 import DayPicker from '../views/DayPicker';
-import TimePicker from '../views/TimePicker';
+import TimesPicker from '../views/TimesPicker';
+import TaskPicker from '../views/TaskPicker';
 import React from 'react';
 import {
     Step,
@@ -72,11 +55,11 @@ class AddTask extends React.Component {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return <div />
+                return <TaskPicker/>;
             case 1:
-                return <DayPicker />
+                return <DayPicker />;
             case 2:
-                return <TimePicker />
+                return <TimesPicker />;
             default:
                 return <div />
         }

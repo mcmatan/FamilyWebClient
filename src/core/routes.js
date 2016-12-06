@@ -15,9 +15,14 @@ const confirmAuth = (nextState, replace) => {
     }
 };
 
+const checkIfBase = (nextState, replace) => {
+    if (authServiceShared.isLoggedIn() && nextState.routes.length ==1) {
+        replace({ pathname: '/dashboard', state: { nextPathname: nextState.location.pathname } });
+    }
+};
+
 export default (
-    <Route path="/" component={App}>
-        <IndexRoute component={Welcome} />
+    <Route path="/" component={App} onEnter={checkIfBase} >
         <Route path="login" component={LoginComponent}/>
         <Route path="dashboard" component={Dashboard} onEnter={confirmAuth} />
         <Route path="addTask" component={AddTask} />
