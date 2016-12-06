@@ -6,7 +6,8 @@ import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import NavigationBar from '../views/NavigationBar';
-import {logout, startAuthListener} from "../../core/actions/AuthActions";
+import {logout} from "../../core/actions/AuthActions";
+import {authServiceShared} from "../../core/Services/AuthService";
 injectTapEventPlugin();
 
 
@@ -14,7 +15,7 @@ injectTapEventPlugin();
 class App extends Component {
 
     componentWillMount() {
-        this.props.dispatch(startAuthListener());
+        authServiceShared.startAuthListener();
     }
 
     handleLoginPress = () => {

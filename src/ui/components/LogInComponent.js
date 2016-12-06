@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Field, reduxForm} from "redux-form";
-import {login} from "../../core/actions/AuthActions";
+import {authServiceShared} from "../../core/Services/AuthService";
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -22,7 +22,7 @@ class LogInComponent extends Component {
         const {loginError, handleSubmit} = this.props;
 
         return (
-            <form onSubmit={handleSubmit((values) => dispatch(login(values))) }>
+            <form onSubmit={handleSubmit((values) => dispatch(authServiceShared.login(values))) }>
                 <Field name="username" component={TextField} hintText="User name" floatingLabelText="User name" />
                 <Field name="password" component={TextField} hintText="Password" floatingLabelText="Password" type="password" />
                 {loginError && <strong>{loginError}</strong>}

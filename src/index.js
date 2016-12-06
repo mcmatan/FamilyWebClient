@@ -5,10 +5,9 @@ import "./index.css";
 import {createStore, combineReducers, applyMiddleware} from "redux";
 import {reducer as formReducer} from "redux-form";
 import AuthReducer from "./core/reducers/AuthReducer";
-import routes from './core/routes'
-import { Router, browserHistory } from 'react-router';
-import thunk from 'redux-thunk';
-import Favicon from 'react-favicon';
+import routes from "./core/routes";
+import {Router, browserHistory} from "react-router";
+import thunk from "redux-thunk";
 
 const reducers = {
     authReducer: AuthReducer,
@@ -24,7 +23,7 @@ const store = createStore(
 render(
     <Provider store={store}>
         <div>
-        <Router history={browserHistory} routes={routes} />
+            <Router history={browserHistory} routes={routes}/>
         </div>
     </Provider>,
     document.getElementById('root')
