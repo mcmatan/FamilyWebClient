@@ -11,7 +11,7 @@ const styles = {
     },
 };
 
-String.prototype.capitalizeFirstLetter = function() {
+String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
@@ -49,7 +49,7 @@ class DayPicker extends Component {
         });
 
         return (
-            <div style={this.props.style} >
+            <div style={this.props.style}>
                 {checkBoxes}
             </div>
         )
