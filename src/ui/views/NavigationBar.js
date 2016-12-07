@@ -11,10 +11,11 @@ class NavigationBar extends Component {
                 cursor: 'pointer',
             },
         };
+
         return (
             <AppBar
                 showMenuIconButton={false}
-                title={<img src={ImageMemoriaIcon} />}
+                title={<img src={ImageMemoriaIcon} style={{width: 165.9375, height: 60}} />}
                 onTitleTouchTap={this.props.onTitleTouchTap}
                 iconElementRight={ ( this.props.iconElementRight && (<FlatButton label={this.props.iconElementRight} onClick={this.props.onClick}/>)) }
             />

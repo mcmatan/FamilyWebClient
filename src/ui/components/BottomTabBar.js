@@ -6,7 +6,7 @@ import ActionHome from "material-ui/svg-icons/action/home";
 import Settings from "material-ui/svg-icons/action/settings";
 
 const dashboardIcon = <ActionHome />;
-const settingsIcon = <Settings />
+const settingsIcon = <Settings />;
 const nearbyIcon = <IconLocationOn />;
 
 /**
