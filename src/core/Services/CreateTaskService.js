@@ -1,5 +1,5 @@
 import TaskType from "../../Model/TaskType";
-import {pickedType, selectedDay, unSelectedDay} from "../actions/CreateTaskActions";
+import {pickedType, selectedDay, unSelectedDay, createTaskStep} from "../actions/CreateTaskActions";
 class CreateTaskService {
 
     selectedTaskType(index) {
@@ -16,6 +16,12 @@ class CreateTaskService {
             } else {
                 dispatch(unSelectedDay(day));
             }
+        }
+    }
+
+    createTaskStep(index, isFinished) {
+        return dispatch => {
+            dispatch(createTaskStep(index));
         }
     }
 }

@@ -1,4 +1,4 @@
-import {CREATE_TASK_PICKED_TYPE, CREATE_TASK_SELECTED_DAY, CREATE_TASK_UN_SELECTED_DAY} from "./ActionTypes";
+import {CREATE_TASK_PICKED_TYPE, CREATE_TASK_SELECTED_DAY, CREATE_TASK_UN_SELECTED_DAY, CREATE_TASK_STEP} from "./ActionTypes";
 
 export function pickedType(key) {
     return {
@@ -18,5 +18,12 @@ export function unSelectedDay(day) {
     return {
         type: CREATE_TASK_UN_SELECTED_DAY,
         payload: day
+    }
+}
+
+export function createTaskStep(index) {
+    return {
+        type: CREATE_TASK_STEP,
+        payload: index
     }
 }

@@ -1,6 +1,12 @@
-import {CREATE_TASK_PICKED_TYPE, CREATE_TASK_SELECTED_DAY, CREATE_TASK_UN_SELECTED_DAY} from "../actions/ActionTypes";
+import {CREATE_TASK_PICKED_TYPE, CREATE_TASK_SELECTED_DAY, CREATE_TASK_UN_SELECTED_DAY, CREATE_TASK_STEP} from "../actions/ActionTypes";
 
-const CreateTaskReducer = (state = [], action) => {
+
+const initialState = {
+    stepIndex: 4
+};
+
+
+const CreateTaskReducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_TASK_PICKED_TYPE:
             return Object.assign({}, state, {
@@ -14,10 +20,13 @@ const CreateTaskReducer = (state = [], action) => {
             return Object.assign({}, state, {
                 [action.payload]: false
             });
+        case CREATE_TASK_STEP:
+            return Object.assign({}, state, {
+                stepIndex: action.payload
+            });
         default:
-            return state
+            return state;
     }
 };
-
 
 export default CreateTaskReducer;

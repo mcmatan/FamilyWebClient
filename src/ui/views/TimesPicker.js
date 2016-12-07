@@ -14,18 +14,21 @@ class TimesPicker extends Component {
         times: []
     };
 
-
     onAddTimePress() {
         this.setState(
             {times: [...this.state.times, 1]}
         )
     }
 
-    render() {
+    onChange = (value) => {
+      debugger;
+    };
 
+    render() {
         const times = this.state.times.map(() => {
             return <TimePicker
                 hintText="Enter time"
+                onChange={this.onChange}
             />
         });
 

@@ -10,6 +10,8 @@ import {
 } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import {connect} from "react-redux";
+import {createTaskServiceShared} from "../../core/Services/CreateTaskService";
 
 /**
  * Horizontal steppers are ideal when the contents of one step depend on an earlier step.
@@ -19,23 +21,20 @@ import FlatButton from 'material-ui/FlatButton';
  */
 class AddTask extends React.Component {
 
-    state = {
-        finished: false,
-        stepIndex: 0,
-    };
-
     handleNext = () => {
-        const {stepIndex} = this.state;
-        this.setState({
-            stepIndex: stepIndex + 1,
-            finished: stepIndex >= 2,
-        });
+        const {stepIndex} = this.props;
+        this.props.dispatch(createTaskServiceShared.createTaskStep(stepIndex + 1));
+        // this.setState({
+        //     stepIndex: stepIndex + 1,
+        //     finished: stepIndex >= 2,
+        // });
     };
 
     handlePrev = () => {
-        const {stepIndex} = this.state;
+        const {stepIndex} = this.props;
         if (stepIndex > 0) {
-            this.setState({stepIndex: stepIndex - 1});
+            //this.setState({stepIndex: stepIndex - 1});
+            this.props.dispatch(createTaskServiceShared.createTaskStep(stepIndex - 1));
         }
     };
 
@@ -66,7 +65,7 @@ class AddTask extends React.Component {
     }
 
     render() {
-        const {finished, stepIndex} = this.state;
+        const {finished, stepIndex} = this.props;
         const contentStyle = {margin: '0 16px'};
 
         return (
@@ -89,7 +88,8 @@ class AddTask extends React.Component {
                                 href="#"
                                 onClick={(event) => {
                                     event.preventDefault();
-                                    this.setState({stepIndex: 0, finished: false});
+                                    this.props.dispatch(createTaskServiceShared.createTaskStep(0));
+                                    //this.setState({stepIndex: 0, finished: false});
                                 }}
                             >
                                 Click here
@@ -120,4 +120,11 @@ class AddTask extends React.Component {
     }
 }
 
-export default AddTask;
+function mapStateToProps(state) {
+    return {
+        stepIndex: state.createTaskReducer.stepIndex,
+        finished: state.createTaskReducer.finished
+    }
+}
+
+export default connect(mapStateToProps)(AddTask);
