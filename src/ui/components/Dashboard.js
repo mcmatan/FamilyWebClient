@@ -12,7 +12,7 @@ class Dashboard extends Component {
     render() {
         return (
         <div>
-            <div>Dashboard!</div>
+            <div style={{width:"100%", height:300}}></div>
             <FloatingButton onClick={this.onFloatingButtonClick} />
             <BottomTabBar />
         </div>

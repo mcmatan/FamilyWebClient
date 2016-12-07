@@ -1,11 +1,12 @@
-import React, {Component} from 'react';
-import FontIcon from 'material-ui/FontIcon';
-import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import React, {Component} from "react";
+import {BottomNavigation, BottomNavigationItem} from "material-ui/BottomNavigation";
+import Paper from "material-ui/Paper";
+import IconLocationOn from "material-ui/svg-icons/communication/location-on";
+import ActionHome from "material-ui/svg-icons/action/home";
+import Settings from "material-ui/svg-icons/action/settings";
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+const dashboardIcon = <ActionHome />;
+const settingsIcon = <Settings />
 const nearbyIcon = <IconLocationOn />;
 
 /**
@@ -25,17 +26,17 @@ class BottomTabBar extends Component {
             <Paper zDepth={1}>
                 <BottomNavigation selectedIndex={this.state.selectedIndex}>
                     <BottomNavigationItem
-                        label="Recents"
-                        icon={recentsIcon}
+                        label="Dashboard"
+                        icon={dashboardIcon}
                         onTouchTap={() => this.select(0)}
                     />
                     <BottomNavigationItem
-                        label="Favorites"
-                        icon={favoritesIcon}
+                        label="Settigs"
+                        icon={settingsIcon}
                         onTouchTap={() => this.select(1)}
                     />
                     <BottomNavigationItem
-                        label="Nearby"
+                        label="Location"
                         icon={nearbyIcon}
                         onTouchTap={() => this.select(2)}
                     />

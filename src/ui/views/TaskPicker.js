@@ -1,9 +1,8 @@
-import React, {Component, PropTypes} from 'react';
-import {List, ListItem, makeSelectable} from 'material-ui/List';
-import Avatar from 'material-ui/Avatar';
-import Subheader from 'material-ui/Subheader';
-import TaskType from '../../Model/TaskType';
-//import myImage from '../../../public/drugs.png';
+import React, {Component, PropTypes} from "react";
+import {List, ListItem, makeSelectable} from "material-ui/List";
+import Avatar from "material-ui/Avatar";
+import Subheader from "material-ui/Subheader";
+import TaskType from "../../Model/TaskType";
 
 
 let SelectableList = makeSelectable(List);
@@ -45,17 +44,17 @@ SelectableList = wrapState(SelectableList);
 class TaskPicker extends Component {
     render() {
 
-        const listItems = TaskType.all().map( (taskType) => {
+        const listItems = TaskType.all().map((taskType) => {
             return (<ListItem
                 value={taskType.key}
                 key={taskType.key}
                 primaryText={taskType.display}
-                leftAvatar={<Avatar src={taskType.src} />}
+                leftAvatar={<Avatar src={taskType.src}/>}
             />)
         });
 
         return (
-            <SelectableList defaultValue={3}>
+            <SelectableList defaultValue={0}>
                 <Subheader>Selectable Contacts</Subheader>
                 {listItems}
             </SelectableList>

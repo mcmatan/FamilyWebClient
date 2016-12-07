@@ -5,6 +5,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const style = {
     marginRight: 20,
+    marginLeft: 50,
+    marginBottom: 50,
 };
 
 

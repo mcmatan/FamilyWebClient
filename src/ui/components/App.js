@@ -7,6 +7,7 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import NavigationBar from "../views/NavigationBar";
 import {authServiceShared} from "../../core/Services/AuthService";
+import {blue400, lightBlue100, lightBlue600, blue900, lightBlue900} from "material-ui/styles/colors";
 injectTapEventPlugin();
 
 
@@ -32,8 +33,14 @@ class App extends Component {
 
 
     render() {
+        const muiTheme = getMuiTheme({
+            palette: {
+                primary1Color: "#6d9de0",
+            },
+        });
+
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
+            <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     {this.props.loggedIn ? (
                         <NavigationBar onTitleTouchTap={this.handleTitleTouch} iconElementRight="Logout"
