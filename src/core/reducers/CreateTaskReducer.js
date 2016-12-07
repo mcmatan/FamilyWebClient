@@ -4,6 +4,7 @@ import {
     CREATE_TASK_UN_SELECTED_DAY,
     CREATE_TASK_STEP
     , CREATE_TASK_DATE_CHANGED_AT_INDEX
+    , CREATE_TASK_FINISHED
 } from "../actions/ActionTypes";
 
 
@@ -28,10 +29,11 @@ const CreateTaskReducer = (state = initialState, action) => {
                 [action.payload]: false
             });
         case CREATE_TASK_STEP:
-            debugger;
             return Object.assign({}, state, {
                 stepIndex: action.payload
             });
+        case CREATE_TASK_FINISHED:
+            return initialState;
         case CREATE_TASK_DATE_CHANGED_AT_INDEX:
 
             const index = action.index;

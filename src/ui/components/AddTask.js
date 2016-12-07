@@ -23,18 +23,17 @@ class AddTask extends React.Component {
 
     handleNext = () => {
         const {stepIndex} = this.props;
-        this.props.dispatch(createTaskServiceShared.createTaskStep(stepIndex + 1));
-        // this.setState({
-        //     stepIndex: stepIndex + 1,
-        //     finished: stepIndex >= 2,
-        // });
+        const isFinished = ((stepIndex) >= 2);
+        this.props.dispatch(createTaskServiceShared.setTaskStep(stepIndex + 1));
+        if (isFinished) {
+            this.props.dispatch(createTaskServiceShared.taskCreationHasFinished(this.props.createTaskReducer));
+        }
     };
 
     handlePrev = () => {
         const {stepIndex} = this.props;
         if (stepIndex > 0) {
-            //this.setState({stepIndex: stepIndex - 1});
-            this.props.dispatch(createTaskServiceShared.createTaskStep(stepIndex - 1));
+            this.props.dispatch(createTaskServiceShared.setTaskStep(stepIndex - 1));
         }
     };
 
@@ -47,7 +46,7 @@ class AddTask extends React.Component {
             case 2:
                 return 'On what time should it notify?';
             default:
-                return 'You\'re a long way from home sonny jim!';
+                return 'Uploading task...';
         }
     }
 
@@ -83,18 +82,7 @@ class AddTask extends React.Component {
                 </Stepper>
                 <div style={contentStyle}>
                     {finished ? (
-                        <p>
-                            <a
-                                href="#"
-                                onClick={(event) => {
-                                    event.preventDefault();
-                                    this.props.dispatch(createTaskServiceShared.createTaskStep(0));
-                                    //this.setState({stepIndex: 0, finished: false});
-                                }}
-                            >
-                                Click here
-                            </a> to reset the example.
-                        </p>
+                        <p>Processing...</p>
                     ) : (
                         <div>
                             <p>{this.getStepTitle(stepIndex)}</p>
@@ -122,6 +110,7 @@ class AddTask extends React.Component {
 
 function mapStateToProps(state) {
     return {
+        createTaskReducer: state.createTaskReducer,
         stepIndex: state.createTaskReducer.stepIndex,
         finished: state.createTaskReducer.finished
     }

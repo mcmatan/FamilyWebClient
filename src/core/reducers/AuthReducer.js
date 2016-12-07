@@ -17,7 +17,6 @@ const AuthReducer = (state = [], action) => {
                 loginError: ""
             });
         case LOGOUT:
-            debugger;
             return [];
         default:
             return state
