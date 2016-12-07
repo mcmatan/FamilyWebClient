@@ -57,7 +57,6 @@ class App extends Component {
 };
 
 function mapStateToProps(state) {
-    dataBaseShared.saveApplicationState(state);
     return {loggedIn: state.authReducer.isLoggedIn};
 }
 

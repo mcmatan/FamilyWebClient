@@ -5,7 +5,6 @@ const firebaseDb = firebaseApp.database();
 
 class DataBase extends Component {
     ref = null;
-    stateRef = null;
 
     isLoggedIn() {
         return localStorage.loggedIn
@@ -19,13 +18,9 @@ class DataBase extends Component {
 
     setUserLoggedOut() {
         localStorage.loggedIn = false;
+        localStorage.clear();
     }
 
-    saveApplicationState(state) {
-        if (this.stateRef) {
-            this.stateRef.set(state);
-        }
-    }
 }
 
 export const dataBaseShared = new DataBase();

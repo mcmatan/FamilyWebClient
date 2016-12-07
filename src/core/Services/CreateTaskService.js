@@ -1,5 +1,5 @@
 import TaskType from "../../Model/TaskType";
-import {pickedType, selectedDay, unSelectedDay, createTaskStep} from "../actions/CreateTaskActions";
+import {pickedType, selectedDay, unSelectedDay, createTaskStep, dateChanged} from "../actions/CreateTaskActions";
 class CreateTaskService {
 
     selectedTaskType(index) {
@@ -22,6 +22,12 @@ class CreateTaskService {
     createTaskStep(index, isFinished) {
         return dispatch => {
             dispatch(createTaskStep(index));
+        }
+    }
+
+    dateChangedAIndex(date, index) {
+        return dispatch => {
+            dispatch(dateChanged(date, index));
         }
     }
 }

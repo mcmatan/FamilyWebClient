@@ -28,6 +28,7 @@ const store = createStore(
 );
 
 store.subscribe(()=>{
+    console.log(JSON.stringify(store.getState()));
     localStorage.setItem('reduxState', JSON.stringify(store.getState()))
 });
 

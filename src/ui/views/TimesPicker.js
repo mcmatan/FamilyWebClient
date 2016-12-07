@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TimePicker from 'material-ui/TimePicker';
-
+import {createTaskServiceShared} from '../../core/Services/CreateTaskService';
+import {connect} from "react-redux";
 
 const style = {
     margin: 12,
@@ -20,15 +21,16 @@ class TimesPicker extends Component {
         )
     }
 
-    onChange = (value) => {
-      debugger;
+    onChange = (index, unusedValue, date) => {
+        this.props.dispatch(createTaskServiceShared.dateChangedAIndex(date, index));
     };
 
     render() {
-        const times = this.state.times.map(() => {
+        const times = this.state.times.map((value, index) => {
             return <TimePicker
                 hintText="Enter time"
-                onChange={this.onChange}
+                onChange={this.onChange.bind(this, index)}
+                key={index}
             />
         });
 
@@ -39,4 +41,8 @@ class TimesPicker extends Component {
     }
 }
 
-export default TimesPicker;
+function mapStateToProps(state) {
+    return {};
+}
+
+export default connect(mapStateToProps)(TimesPicker);

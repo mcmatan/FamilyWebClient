@@ -17,9 +17,8 @@ const AuthReducer = (state = [], action) => {
                 loginError: ""
             });
         case LOGOUT:
-            return Object.assign({}, state, {
-                isLoggedIn: false
-            });
+            debugger;
+            return [];
         default:
             return state
     }
