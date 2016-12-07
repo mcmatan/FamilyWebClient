@@ -11,14 +11,8 @@ const style = {
 
 class TimesPicker extends Component {
 
-    state = {
-        times: []
-    };
-
     onAddTimePress() {
-        this.setState(
-            {times: [...this.state.times, 1]}
-        )
+        this.props.dispatch(createTaskServiceShared.dateChangedAIndex(null, this.props.dates.length));
     }
 
     onChange = (index, unusedValue, date) => {
@@ -26,11 +20,13 @@ class TimesPicker extends Component {
     };
 
     render() {
-        const times = this.state.times.map((value, index) => {
+        const times = this.props.dates.map((value, index) => {
+            const date = new Date(value);
             return <TimePicker
                 hintText="Enter time"
                 onChange={this.onChange.bind(this, index)}
                 key={index}
+                value={date}
             />
         });
 
@@ -42,7 +38,7 @@ class TimesPicker extends Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {dates: state.createTaskReducer.dates};
 }
 
 export default connect(mapStateToProps)(TimesPicker);
