@@ -7,7 +7,8 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import injectTapEventPlugin from "react-tap-event-plugin";
 import NavigationBar from "../views/NavigationBar";
 import {authServiceShared} from "../../core/Services/AuthService";
-import {blue400, lightBlue100, lightBlue600, blue900, lightBlue900} from "material-ui/styles/colors";
+import {dataBaseShared} from "../../core/Services/DataBase";
+import {loadStateFromDataBase} from "../../core/actions/DataBaseActions";
 injectTapEventPlugin();
 
 
@@ -53,10 +54,10 @@ class App extends Component {
             </MuiThemeProvider>
         )
     }
-}
-;
+};
 
 function mapStateToProps(state) {
+    dataBaseShared.saveApplicationState(state);
     return {loggedIn: state.authReducer.isLoggedIn};
 }
 

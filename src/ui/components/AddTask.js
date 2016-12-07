@@ -1,7 +1,7 @@
 
 import DayPicker from '../views/DayPicker';
 import TimesPicker from '../views/TimesPicker';
-import TaskPicker from '../views/TaskPicker';
+import TaskPicker from './TaskPicker';
 import React from 'react';
 import {
     Step,

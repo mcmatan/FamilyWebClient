@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import Days from "../../Model/Days";
+import {connect} from "react-redux";
+import {createTaskServiceShared} from "../../core/Services/CreateTaskService";
 
 const styles = {
     block: {
@@ -17,27 +19,18 @@ String.prototype.capitalizeFirstLetter = function () {
 
 class DayPicker extends Component {
 
-    state = {
-        sunday: false,
-        monday: false,
-        tuesday: false,
-        wednesday: false,
-        thursday: false,
-        friday: false,
-        saturday: false
-    };
-
     onChecked = (key, event, checked) => {
-        this.setState(
-            {[key]: checked}
-        );
+        this.props.dispatch(createTaskServiceShared.daySelected(key, checked));
+        // this.setState(
+        //     {[key]: checked}
+        // );
     };
 
     render() {
         const days = Days.all();
         let self = this;
         let checkBoxes = days.map(function (text) {
-            let isSelected = self.state[text];
+            let isSelected = self.props.selectedDays[text];
             return (
                 <Checkbox
                     label={text.capitalizeFirstLetter()}
@@ -56,4 +49,9 @@ class DayPicker extends Component {
     }
 }
 
-export default DayPicker;
+function mapStateToProps(state) {
+
+    return {selectedDays: state.createTaskReducer};
+}
+
+export default connect(mapStateToProps)(DayPicker);

@@ -1,9 +1,8 @@
 import React from "react";
-import {Route, IndexRoute} from "react-router";
+import {Route} from "react-router";
 import App from "../ui/components/App";
 import LoginComponent from "../ui/components/LogInComponent";
 import Dashboard from "../ui/components/Dashboard";
-import Welcome from "../ui/components/Welcome";
 import AddTask from "../ui/components/AddTask";
 import {authServiceShared} from "./Services/AuthService";
 
@@ -16,7 +15,7 @@ const confirmAuth = (nextState, replace) => {
 };
 
 const checkIfBase = (nextState, replace) => {
-    if (authServiceShared.isLoggedIn() && nextState.routes.length ==1) {
+    if (authServiceShared.isLoggedIn() && nextState.routes.length === 1) {
         replace({ pathname: '/dashboard', state: { nextPathname: nextState.location.pathname } });
     }
 };

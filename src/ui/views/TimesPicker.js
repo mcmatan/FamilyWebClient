@@ -22,9 +22,8 @@ class TimesPicker extends Component {
     }
 
     render() {
-        const format = 'HH:mm';
 
-        const times = this.state.times.map( (time) => {
+        const times = this.state.times.map(() => {
             return <TimePicker
                 hintText="Enter time"
             />

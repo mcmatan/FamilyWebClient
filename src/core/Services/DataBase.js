@@ -1,8 +1,11 @@
-import {firebaseApp} from '../firebase/firebase';
+import {firebaseApp} from "../firebase/firebase";
+import React, {Component} from "react";
+import {loadState} from "../actions/DataBaseActions";
 const firebaseDb = firebaseApp.database();
 
-class DataBase {
-    ref = {};
+class DataBase extends Component {
+    ref = null;
+    stateRef = null;
 
     isLoggedIn() {
         return localStorage.loggedIn
@@ -16,6 +19,12 @@ class DataBase {
 
     setUserLoggedOut() {
         localStorage.loggedIn = false;
+    }
+
+    saveApplicationState(state) {
+        if (this.stateRef) {
+            this.stateRef.set(state);
+        }
     }
 }
 
